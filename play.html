@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./dist/img/favicon.ico">
+    <link rel="stylesheet" href="./dist/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./src/css/app.css">
+    <title>Turbulent Quiz</title>
+</head>
+<body class="" id="play">
+    <div class="root">
+    <!-- Container -->
+        <div class="container">
+            <div class="wrapper" id="lobby">
+                <div class="board col-12 p-0">
+                    <div class="lobby row justify-content-between align-items-center m-0">
+                        <div class="col-5" style="height: 100%;">
+                            <div class="lobby-inner text-center">
+                                <img src="dist/icon/icAvatar.svg">
+                                <h1 class="player player-name">player name</h1>
+                                <p class="player player-win mb-2"><span id="player-win">0</span>x wins</p>
+                                <p class="player player-fail"><span id="player-fail">0</span>x loose</p>
+                            </div>
+                        </div>
+                        <div class="col-6 p-0 pr-4" style="height: 100%;">
+                            <div class="btn-wrapper">
+                                <div class="gradient-bg display-coin">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_knayiqhb.json" background="transparent" speed="1"  style="width:150px;height:150px;margin-left:-120px;" loop autoplay></lottie-player>
+                                        <p class="player player-coin m-0">0</p>
+                                    </div>
+                                </div>
+                                <div class="gradient-bg start-play" id="playGame">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <p class="m-0 mr-3">PLAY</p><img src="dist/icon/icPlayCircle.svg">
+                                    </div>
+                                </div>
+                                <div class="row m-0 justify-content-center">
+                                    <div class="col-4 pl-0">
+                                        <div class="gradient-btn setting-menu">
+                                            <button class="btn btn-lg bg-transparent d-flex justify-content-center align-items-center" id="settingsGame" data-toggle="modal" data-target="#modalSettings" style="width: 100%;">
+                                                <img src="dist/icon/icSettingCircle.svg" style="position: absolute;">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-4" style="padding:0 7.5px;">
+                                        <div class="gradient-btn help-menu">
+                                            <button class="btn btn-lg bg-transparent d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#modalRules" style="width: 100%;" onclick="clickSound();">
+                                               ?
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 pr-0">
+                                        <div class="gradient-btn quit-menu">
+                                            <a href="index.html" class="btn btn-lg bg-transparent d-flex justify-content-center align-items-center" id="#exitGame" style="width: 100%;">
+                                                <img src="dist/icon/icQuitCircle.svg" style="position: absolute;">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="wrapper" id="gameplay">
+                <div class="gameplay-left col-3 p-0">
+                    <div class="left-wrapper p-0 pr-3 pb-4">
+                        <div class="checkpoint-level">
+                            <ul class="checkpoints">
+                                <li class="checkpoint coin-cash" data-level="5" data-coin="10000">10000 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="5" data-coin="5000">5000 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="5">Level 5</li>
+                                <li class="checkpoint" data-level="4" data-coin="2500">2500 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="4" data-coin="1250">1250 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="4">Level 4</li>
+                                <li class="checkpoint" data-level="3" data-coin="860">860 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="3" data-coin="640">640 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="3" data-coin="320">320 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="3">Level 3</li>
+                                <li class="checkpoint" data-level="2" data-coin="200">200 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="2" data-coin="100">100 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="2" data-coin="50">50 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="2">Level 2</li>
+                                <li class="checkpoint" data-level="1" data-coin="25">25 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="1" data-coin="15">15 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="1" data-coin="5">5 <span><img src="./dist/icon/icCoin_Credit.svg"></span></li>
+                                <li class="checkpoint" data-level="1">Level 1</li>
+                            </ul>
+                        </div>
+                        <div class="help-bar mt-2">
+                            <p class="text-center">Help<button class="btn btn-xs help-btn ml-2 p-0 px-2" data-toggle="modal" data-target="#modalHelp">?</button></p>
+                            <div class="row justify-content-center m-0">
+                                <button class="option-helper btn btn-md p-0 px-1 disabled" id="highlightOption"><img src="./dist/icon/highlightOption_on.svg" class="active"><img src="./dist/icon/highlightOption_off.svg" class="disabled"></button>
+                                <button class="option-helper btn btn-md p-0 px-1 disabled" id="fiftyOption"><img src="./dist/icon/fiftyOption_on.svg" class="active"><img src="./dist/icon/fiftyOption_off.svg" class="disabled"></button>
+                                <a href="https://www.google.com/" class="option-helper btn btn-md p-0 px-1 disabled" id="googleSearch" target="_blank"><img src="./dist/icon/googleSearch_on.svg" class="active"><img src="./dist/icon/googleSearch_off.svg" class="disabled"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gameplay-right col-9 p-0">
+                    <div class="gameplay-headbar col-12 mb-3">
+                        <div class="row m-0 justify-content-end">
+                            <div class="player-bar">
+                                <h3 class="player player-name" style="font-size:16px;"></h3>
+                                <span><img src="dist/icon/icCoin_Credit.svg">&nbsp;&nbsp;</span><span class="player player-coin" style="font-size: 18px;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="right-wrapper p-0 pl-2">
+                            <div class="instruc-game col-12 d-flex flex-column justify-content-end align-items-center text-center mt-2 p-0">
+                                
+                                <h1 class="answer-text"></h1>
+                                <p class="caption-text"></p>
+                            </div>
+                            <div class="col-12 p-0 mb-2">
+                                <div class="help-bar row justify-content-between m-0">
+                                    <div class="left-bar">
+                                        <button class="btn btn-lg p-0" id="leftGame"><img src="./dist/icon/icAfk.svg"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="question-text my-2 d-flex justify-content-between">
+                                <p></p>
+                                <div class="translate-text">
+                                    <button class="switch-lang btn btn-sm p-0 disabled" id="switch-lang"><img src="./dist/img/translate-logo.png" width="30" height="30"></button>
+                                </div>
+                            </div>
+                            <div class="option-text d-flex flex-wrap">
+                                <div class="multiple-choice disabled">
+                                    <p>A</p>
+                                    <p class="choice-text"></p>
+                                </div>
+                                <div class="multiple-choice disabled">
+                                    <p>B</p>
+                                    <p class="choice-text"></p>
+                                </div>
+                                <div class="multiple-choice disabled">
+                                    <p>C</p>
+                                    <p class="choice-text"></p>
+                                </div>
+                                <div class="multiple-choice disabled">
+                                    <p>D</p>
+                                    <p class="choice-text"></p>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+        <div class="emoticon">
+            <img src="./dist/icon/emoji-1.svg" width="90" height="80">
+        </div>
+        <div class="player-input">
+            <div class="input-name">
+                <div class="form-group">
+                    <span class="validation-name"></span>
+                    <input type="text" class="board form-control mt-2" name="name" id="playerName" placeholder="Enter Name (max. 15 characters)" onkeyup="inputName()">
+                </div>
+                <button class="btn btn-lg p-0 mt-3" id="enterGame"><img src="./dist/icon/icEnter.svg"></button>                    
+            </div>
+        </div>
+        
+        <div class="modal fade" id="modalGame" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center pt-5">
+                        <p class="mb-0"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="closeModal" class="btn btn-md p-0 d-none" data-dismiss="modal"><img src="./dist/icon/icCancelAfk_btn.svg" width="180"></button>
+                        <button type="button" id="escapeGame" class="btn btn-md p-0 d-none"><img src="./dist/icon/icConfirmAfk_btn.svg" width="180"></button>
+                        <button type="button" id="finishGame" class="btn btn-md p-0"><img src="./dist/icon/icNo_btn.svg" width="180"></button>
+                        <button type="button" id="repeatGame" class="btn btn-md p-0"><img src="./dist/icon/icRepeat_btn.svg" width="180"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalHelp" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center pt-5">
+                        <div class="close-modal">
+                            <button type="button" class="btn btn-md p-1" data-dismiss="modal"><img src="./dist/icon/icClose_btn.svg" width="50" height="50"></button>
+                        </div>
+                        <h3 class="modal-title">Quiz Help Options</h3>
+                        <div class="rules-bg">
+                            <p class="m-0 p-4">All help options can only be used once during play.</p><br>
+                            <div class="row justify-content-center">
+                                <div class="col-2 p-0"><img src="./dist/icon/highlightOption_on.svg"></div>
+                                <div class="col-8 p-0 text-left">
+                                    <h4 class="modal-title">Highlight Answer</h4>
+                                    <p>This help option will highlight the correct answer option</p>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-2 p-0"><img src="./dist/icon/fiftyOption_on.svg"></div>
+                                <div class="col-8 p-0 text-left">
+                                    <h4 class="modal-title">Fifty fifty</h4>
+                                    <p>This help option will eliminate two incorrect answer options, leaving 1 correct option and 1 wrong option.</p>
+                                </div>
+                            </div>
+                           <div class="row justify-content-center">
+                               <div class="col-2 p-0"><img src="./dist/icon/googleSearch_on.svg"></div>
+                               <div class="col-8 p-0 text-left">
+                                    <h4 class="modal-title">Googling</h4>
+                                    <p>This help option will give you the opportunity to search for answers on Google's search engine</p><br>
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalSettings" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Arrangement</h5>
+                    </div>
+                    <div class="modal-body px-5">
+                        <div class="close-modal">
+                            <button type="button" class="btn btn-md p-1" data-dismiss="modal" id="closeSettings"><img src="./dist/icon/icClose_btn.svg" width="50" height="50"></button>
+                        </div>
+                         <p class="modal-title mb-3">Question Category<span>&nbsp;(min 3 category)</span></p>
+                         <div class="container-fluid">
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">General knowledge</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="general" value="9">
+                                 </div>
+                             </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">Science & Nature</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="sci-nature" value="17">
+                                 </div>
+                             </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">Science: Computer</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="sci-comp" value="18">
+                                 </div>
+                             </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                <label class="form-check-label">Science: Mathematics</label>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="sci-math" value="19">
+                                </div>
+                            </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">Gadgets/technologies</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="sci-gad" value="30">
+                                 </div>
+                             </div>
+                             
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">Entertainment: Movies</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="ent-movie" value="11">
+                                 </div>
+                             </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">Entertainment: Music</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="ent-music" value="12">
+                                 </div>
+                             </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">Entertainment: Video Game</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="ent-games" value="15">
+                                 </div>
+                             </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">Entertainment : Anime</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="ent-anime" value="31">
+                                 </div>
+                             </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">Sport</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="sports" value="21">
+                                 </div>
+                             </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label"> Geography</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="geography" value="22">
+                                 </div>
+                             </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">History</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="history" value="23">
+                                 </div>
+                             </div>
+                             <div class="row justify-content-between category-list mb-2 p-4">
+                                 <label class="form-check-label">Art</label>
+                                 <div class="form-check">
+                                     <input type="checkbox" class="form-check-input" id="arts" value="25">
+                                 </div>
+                             </div>
+                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-lg btn-block p-3" id="saveSettings">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalRules" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Help</h4>
+                    </div>
+                    <div class="modal-body px-5">
+                        <div class="close-modal">
+                            <button type="button" class="btn btn-md p-1" data-dismiss="modal"><img src="./dist/icon/icClose_btn.svg" width="50" height="50"></button>
+                        </div>
+                        <h1 class="tittle-section mb-3" style="font-size:18px;">Rule of the game</h1>
+                        <div class="rules-bg p-3">
+                            <ol class="text-left mx-4">
+                                <li>There are 13 questions that must be answered correctly to win 10,000 coins</li>
+                                <li>Players will pass through 5 game level points, where the higher the level the more difficult the questions given</li>
+                                <li>On the way to the 10,000 coin ladder, players will be provided with 3 options for help, namely 50/50 (Fifty fifty), Highlight answer (highlight answers), and Googling (googling answers).</li>
+                                <li>If the Player answers incorrectly, then the coins obtained are in accordance with the position on the coin ladder at that time</li>
+                            </ol>
+                            <ol class="text-left mx-4">
+                                <p class="mb-1">The game will end if and only if:</p>
+                                <li>Player answered incorrectly</li>
+                                <li>The player has correctly completed the 13th question.</li>
+                            </ol>
+                        </div>
+                        <h1 class="tittle-section" style="font-size:18px;">Boost Rewards</h1>
+                        <div class="rules-bg p-3">
+                            <table class="table table-borderless">
+                                <thead class="text-white">
+                                    <tr>
+                                        <th>Level</th>
+                                        <th>Question</th>
+                                        <th>coin</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-white">
+                                        <tr>
+                                            <td>Level 1 (easy)</td>
+                                            <td>Question 1</td>
+                                            <td>5 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>Question 2</td>
+                                            <td> 15 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>Question 3</td>
+                                            <td> 25 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Level 2 (easy)</td>
+                                            <td>Question 4</td>
+                                            <td> 50 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>Question 5</td>
+                                            <td> 100 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>Question 6</td>
+                                            <td> 200 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Level 3 (medium)</td>
+                                            <td>Question 7</td>
+                                            <td> 320 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>Question 8</td>
+                                            <td> 640 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>Question 9</td>
+                                            <td> 860 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Level 4 (hard)</td>
+                                            <td>Question 10</td>
+                                            <td> 1250 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>Question 11</td>
+                                            <td> 2500 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Level 5 (hard)</td>
+                                            <td>Question 12</td>
+                                            <td> 5000 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>Question 13</td>
+                                            <td> 10000 <span><img src="./dist/icon/icCoin_Credit.svg"></span></td>
+                                        </tr>
+                                    </tbody>
+                            </table>                   
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-md p-3" id="rulesOK" data-dismiss="modal" style="text-transform:capitalize;">OK, got it</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade"></div>
+        <div class="overlay">
+            <div class="preload">
+                <div class="preload-logo"><img src="./dist/img/turbulent456-removebg-preview.png"></div>
+                <div class="preload-progress">
+                    <div class="spinner-grow text-success"></div>
+                    <div class="spinner-grow text-info"></div>
+                    <div class="spinner-grow text-warning"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div hidden>
+        <audio src="./dist/sounds/btn_click.wav" id="audio-click"></audio>
+        <audio src="./dist/sounds/btn_close.ogg" id="audio-close"></audio>
+        <audio src="./dist/sounds/menu_transition.wav" id="audio-transition"></audio>
+        <audio src="./dist/sounds/correct_answer.wav" id="audio-answer"></audio>
+        <audio src="./dist/sounds/game_over.wav" id="audio-gameover"></audio>
+        <audio src="./dist/sounds/winner.wav" id="audio-winner"></audio>
+        <audio src="./dist/sounds/applause.wav" id="audio-applause"></audio>
+    </div>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="./dist/js/jquery-3.4.1.js"></script>
+    <script src="./dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./src/js/app.js"></script>
+</body>
+</html>
